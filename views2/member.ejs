@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .backtop{
+            border: 1px solid #000000;width: 60px;height: 50px;color: red;background-color: blueviolet;position: fixed;right: 10px;bottom: 10px;opacity:0.5;
+        }
+        .backtop:hover{
+            color: yellow;background-color: green;opacity:1;
+        }
+        .backtop:active{
+            color: gold;background-color: darkblue;
+        }
+    </style>
+    <title>會員頁面</title>
+</head>
+<body>
+    <div style="text-align: center;"><h3 style="display: inline;">歡迎進入會員系統</h3><button style="cursor:pointer;position:absolute;right: 10px;"><a href="/signout" style="color:black;text-decoration:none;">登出會員</a></button></div>
+    <div style="margin:10px;text-align: center;">你好，<%= name %>，在這裡可以留言並觀看其他人的留言</div>
+    <h3 style="margin:10px;text-align: center;">輸入留言</h3>
+    <form action="/msg" method="POST">
+    <div style="margin:10px;text-align: center;">稱呼：<%= name %></div>
+    <div style="margin:10px;text-align: center;">留言：<textarea name="msg" id="msg" required></textarea></div>
+    <div style="margin:10px;text-align: center;""><button style="cursor:pointer;">送出留言</button></div>
+    </form>
+    <br/>
+    <button id="backtop" class="backtop">至頂</button>
+    <h3 style="text-align: center;">留言列表</h3>
+    <hr/>
+    <% for(let i=0;i<data.length;i++){ %>
+        <div>
+            <div style="margin: 10px;"><span><%= i+1 %>.</span><span><button onclick="reply(<%= i+1 %>);">回覆</button></span></div>
+            <div style="margin: 10px;"><span><%= data[i].year %>/</span><span><%= data[i].month %>/</span><span><%= data[i].day %> </span><span><%= data[i].hours %>:</span><span><%= data[i].minutes %>:</span><span><%= data[i].seconds %></span></div>
+            <div style="margin: 10px;"><span><%= data[i].name %>：</span></div>
+            <div style="margin: 10px;"><span><%= data[i].msg %></span></div>
+            <hr/>
+        </div>
+    <% } %>
+</body>
+<script>
+    function reply(num){
+        let msg=document.getElementById("msg");
+        msg.innerHTML+="@"+num+" ";
+    };
+    window.onload=function(){
+    let backtop=document.getElementById("backtop");
+    backtop.style.display="none";
+    window.onscroll=function(){
+        if(document.documentElement.scrollTop<=document.documentElement.scrollTop/3){
+            backtop.style.display="none";
+        }
+        else{
+            backtop.style.display="block";
+        };
+    };
+    backtop.onclick=function(){
+        let timer=setInterval(function(){
+            document.documentElement.scrollTop=document.documentElement.scrollTop-document.documentElement.scrollTop/5;
+            if(document.documentElement.scrollTop==0){
+                clearInterval(timer);
+            };
+        },30);
+    };
+};
+</script>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        .register{
+            text-align: center;
+        }
+        .nickName{
+            margin: 10px;
+            text-align: center;
+        }
+        .nameEnter{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .registerEmail{
+            text-align: center;
+        }
+        .registerEmailEnter{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .registerPassword1{
+            margin: 10px;
+            text-align: center;
+        }
+        .registerPassword2{
+            margin: 10px;
+            text-align: center;
+        }
+        .registerPasswordEnter1{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .registerPasswordEnter2{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .registerEnter{
+            margin: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .login{
+            text-align: center;
+        }
+        .loginEmail{
+            margin: 10px;
+            text-align: center;
+        }
+        .loginEmailEnter{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .loginPassword{
+            margin: 10px;
+            text-align: center;
+        }
+        .loginPasswordEnter{
+            margin: 10px;
+            border-radius: 5px;
+        }
+        .loginEnter{
+            margin: 10px;
+            text-align: center;
+            border-radius: 5px;
+        }
+        .ok{
+            color: green;font-size: 20px;
+        }
+        .no{
+            color: red;font-size: 30px;
+        }
+        input:valid+.ok+.no{visibility: hidden;}
+        input:valid+.ok{
+            display: inline;
+        }
+        input:valid+.no{
+            display: none;
+        }
+        input:invalid+.ok{
+            display: none;
+        }
+    </style>
+    <title>首頁</title>
+</head>
+<body>
+    <div class="register"><h3>註冊帳號</h3></div>
+    <form action="/signup" method="POST">
+    <div class="nickName">你的稱呼：
+        <input type="text" class="nameEnter" name="nameEnter" id="nameEnter" required/>
+        <span class="ok"><b>OK</b></span>
+        <span class="no"><b>×</b></span><br/>
+    </div><br/>
+    <div class="registerEmail">電子郵件：
+        <input type="text" class="registerEmailEnter" name="registerEmailEnter" id="registerEmailEnter" required/>
+    </div><br/>
+    <div class="registerPassword1">輸入密碼：
+        <input type="password" class="registerPasswordEnter1" name="registerPasswordEnter1" id="registerPasswordEnter1" required placeholder="3~10英數字" pattern="[0-9a-zA-Z]{3,10}"/>
+        <span class="ok"><b>OK</b></span>
+        <span class="no"><b>×</b></span><br/>
+    </div><br/>
+    <div class="registerPassword2">確認密碼：
+        <input type="password" class="registerPasswordEnter2" name="registerPasswordEnter2" id="registerPasswordEnter2" required placeholder="再輸入一次密碼" pattern="[0-9a-zA-Z]{3,10}"/>
+        <span class="ok"><b>OK</b></span>
+        <span class="no"><b>×</b></span><br/>
+    </div><br/>
+    <div class="registerEnter"><button style="cursor:pointer;">註冊會員</button></div>
+    </form>
+    <div class="login"><h3>登入帳號</h3></div>
+    <form action="/signin" method="POST">
+    <div class="loginEmail">電子郵件：
+        <input type="text" class="loginEmailEnter" name="loginEmailEnter" id="loginEmailEnter" required/>
+    </div>
+    <div class="loginPassword">輸入密碼：
+        <input type="password" class="loginPasswordEnter" name="loginPasswordEnter" id="loginPasswordEnter" required/>
+    </div>
+    <div class="loginEnter"><button style="cursor:pointer;">登入會員</button></div>
+    </form>
+</body>
+</html>

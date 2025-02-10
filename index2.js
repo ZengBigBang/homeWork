@@ -1,5 +1,5 @@
 const mongo=require("mongodb");
-const uri="mongodb+srv://root:QU4VUL4RU8@mycluster.d6kk2.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+const uri="mongodb+srv://root:@mycluster.d6kk2.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
 const client=new mongo.MongoClient(uri);
 let db=null;
 async function initDB(err){
@@ -113,6 +113,10 @@ app.post("/msg",async function(req,res){
     const minutes=new Date().getMinutes();
     const seconds=new Date().getSeconds();
     const collection=db.collection("msgBoard");
+    if(!req.session.member){
+        res.redirect("/error?msg=請登入會員");
+        return;
+    }
     if(msg.length!==0){
         await collection.insertOne({
         name:name,msg:msg,time:time,year:year,month:month,day:day,hours:hours,minutes:minutes,seconds:seconds

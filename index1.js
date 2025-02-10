@@ -1,5 +1,5 @@
 const mongo=require("mongodb");
-const uri="mongodb+srv://root:QU4VUL4RU8@mycluster.d6kk2.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
+const uri="mongodb+srv://root:@mycluster.d6kk2.mongodb.net/?retryWrites=true&w=majority&appName=MyCluster";
 const client=new mongo.MongoClient(uri);
 let db=null;
 async function initDB(err){
